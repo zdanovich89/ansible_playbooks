@@ -1,0 +1,8 @@
+---
+- name: Test Connection To My Servers
+  hosts: REDHAT
+  become: true
+
+  tasks:    
+  - name: Ping my Servers
+    ping:

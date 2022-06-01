@@ -1,0 +1,38 @@
+---
+- name: My test variable playbook
+  hosts: REDHAT
+  become: true
+
+  vars:
+    message1: Privet
+    message2: susliki
+    secret: Panks not dead
+
+  tasks:   
+  - name: Print secret variable
+    debug:
+      var: secret
+
+  - name: Print secret fraza  
+    debug:
+      msg: "Secretnaia fraza {{ secret }}"
+
+  - name: Print owners
+    debug:
+      msg: "Server owner -->{{ owner }}<--" 
+
+  
+  - set_fact: full_message="{{ message1 }} {{ message2 }} from {{ owner }}"
+      
+  - name: Print new variable
+    debug:
+      var: full_message
+
+  - debug:
+      var: ansible_processor 
+
+  - shell: uptime
+    register: results
+
+  - debug:
+      var: results.stdout

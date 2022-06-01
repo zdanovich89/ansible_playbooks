@@ -1,0 +1,19 @@
+---
+- name: Loops Playbook
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Say Hello to all
+    debug: msg="Hello {{ item }}"
+    loop:
+      - "Raz"
+      - "Dva"
+      - "Try"
+
+  - name: Loop Until example
+    shell: echo -n lol >> myfile.txt && cat myfile.txt
+    register: output
+    delay: 2
+    retries: 10
+    until: output.stdout.find("lollollollollollol") == false

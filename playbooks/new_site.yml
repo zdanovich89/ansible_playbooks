@@ -1,0 +1,8 @@
+---
+- name: Install Apache and Upload my Web Page
+  hosts: REDHAT
+  become: true
+
+  roles:
+    - deploy_apache_web
+
